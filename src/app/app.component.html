@@ -1,0 +1,71 @@
+<div *ngIf="!showHeros">
+  <button class="btn btn-danger" (click)="openBitacora()">Bitacora</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hero of characterList" (click)="openHero(hero.id)">
+        <td>{{hero.id}}</td>
+        <td>{{hero.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="openModal" id="myModal" class="modal fade show d-block" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">{{selectedCharacter.name}}</h4>
+        </div>
+        <div class="modal-body">
+          <p>Descripción: {{selectedCharacter.description}}</p>
+          <p>Events:</p>
+          <tr *ngFor="let event of selectedCharacterEvents">
+            <td>{{event.name}}</td>
+          </tr>
+          <br>
+          <p>Comics:</p>
+          <tr *ngFor="let comic of selectedCharacterComics">
+            <td>{{comic.name}}</td>
+          </tr>
+          <br>
+          <p>Series:</p>
+          <tr *ngFor="let serie of selectedCharacterSeries">
+            <td>{{serie.name}}</td>
+          </tr>
+          <br>
+          <p>Stories:</p>
+          <tr *ngFor="let story of selectedCharacterStory">
+            <td>{{story.name}}</td>
+          </tr>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="closeHero()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showHeros">
+  <button class="btn btn-danger" (click)="closeBitacora()">Heroes</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Servicio consultado</th>
+        <th scope="col">Fecha y hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bitacora of bitacoraList">
+        <td>{{bitacora.serviceName}}</td>
+        <td>{{bitacora.timestamp | date: 'yyyy-MM-dd HH:mm'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
