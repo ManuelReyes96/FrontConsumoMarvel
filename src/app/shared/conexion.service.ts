@@ -7,6 +7,9 @@ import { Bitacora } from '../model/bitacora.model';
 @Injectable({
   providedIn: 'root',
 })
+/**
+ * Class for consume an API REST
+ */
 export class conexionService {
   // Base url
   baseurl = 'http://localhost:8080/character';
@@ -20,21 +23,22 @@ export class conexionService {
       'Accept':'application/json'
     }),
   };
-  // GET
+
+  // GET Method for GetList
   getListCharacters(): Observable<CharacterDataWrapper> {
     return this.http
       .get<CharacterDataWrapper>(this.baseurl + '/list/0/0')
       .pipe(retry(1), catchError(this.errorHandl));
   }
 
-  // GET
+  // GET Method for GetCharacterById
   getCharacterById(id: number): Observable<CharacterDataWrapper> {
     return this.http
       .get<CharacterDataWrapper>(this.baseurl + '/char/' + id)
       .pipe(retry(1), catchError(this.errorHandl));
   }
 
-  // GET
+  // GET Method for Bitacora
   getBitacora(): Observable<Bitacora[]> {
     return this.http
       .get<Bitacora[]>(this.baseurl + '/getlog')

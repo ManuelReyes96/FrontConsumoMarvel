@@ -1,5 +1,8 @@
 import { Character } from "./character.model";
 
+/**
+ * Part of the JSON Response
+ */
 export class CharacterDataContainer {
     offset: string;
     limit: string;

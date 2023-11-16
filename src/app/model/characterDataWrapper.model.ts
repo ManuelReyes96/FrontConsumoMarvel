@@ -1,5 +1,8 @@
-import { CharacterDataContainer } from "./CharacterDataContainer.model";
+import { CharacterDataContainer } from "./characterDataContainer.model";
 
+/**
+ * Principal part of the JSON Response
+ */
 export class CharacterDataWrapper {
     code: string;
     status: string;

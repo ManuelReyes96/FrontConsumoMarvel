@@ -14,7 +14,9 @@ import { Bitacora } from './model/bitacora.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+/**
+ * Declaration of required variables
+ */
   title = 'FrontConsumoMarvel';
   characterList : Character[] = [];
   openModal: boolean = false;
@@ -26,16 +28,26 @@ export class AppComponent {
   selectedCharacterStory: StorySummary[] = [];
   bitacoraList: Bitacora[] = [];
 
+  /**
+   * constructor for conexionService
+   * @param conexionService class for establish connection to backend
+   */
   constructor(public conexionService: conexionService){
-
   }
 
+  /**
+   * Method to get the list of Characters
+   */
   ngOnInit(){
     this.conexionService.getListCharacters().subscribe((res) =>{
       this.characterList = res.data.results;
     }) 
   }
 
+  /**
+   * Method to get an specific Character and open a modal
+   * @param id identifier of character
+   */
   openHero(id : number){
     this.conexionService.getCharacterById(id).subscribe((res) => {
       this.selectedCharacter = res.data.results[0];
@@ -47,6 +59,9 @@ export class AppComponent {
     })
   }
 
+  /**
+   * Method to close a modal and clean variables
+   */
   closeHero(){
     this.selectedCharacter = null;
     this.selectedCharacterComics = [];
@@ -56,6 +71,9 @@ export class AppComponent {
     this.openModal = false;
   }
 
+  /**
+   * Method to change the view to Bitacora
+   */
   openBitacora(){
     this.showHeros = true;
     this.conexionService.getBitacora().subscribe((res)=>{
@@ -63,6 +81,9 @@ export class AppComponent {
     })
   }
 
+  /**
+   * Method to change the view to Characters
+   */
   closeBitacora(){
     this.showHeros = false;
   }

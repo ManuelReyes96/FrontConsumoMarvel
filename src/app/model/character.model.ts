@@ -5,6 +5,9 @@ import { Image } from "./image.model";
 import { SeriesList } from "./seriesList.model";
 import { URL } from "./url.model";
 
+/**
+ * Part of the JSON Response
+ */
 export class Character {
     id: string;
     name: string;
